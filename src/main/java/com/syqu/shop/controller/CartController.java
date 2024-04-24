@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class CartController {
+
     private static final Logger logger = LoggerFactory.getLogger(CartController.class);
     private final ShoppingCartService shoppingCartService;
     private final ProductService productService;

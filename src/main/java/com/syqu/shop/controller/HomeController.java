@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+// write HomeController class
 
 @Controller
 public class HomeController {
@@ -24,7 +25,11 @@ public class HomeController {
         this.productService = productService;
     }
 
-    @GetMapping(value = {"/","/index","/home"})
+    //write home method to get list of products from ProductService class
+    //and add number of products to the model
+    //and find all categories from CategoryService class and add them to the model
+    //and return home.html
+    @GetMapping("/")
     public String home(Model model){
         model.addAttribute("products", getAllProducts());
         model.addAttribute("productsCount", productsCount());
@@ -32,23 +37,12 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("/searchByCategory")
-    public String homePost(@RequestParam("categoryId") long categoryId, Model model){
-        model.addAttribute("books", productService.findAllByCategoryId(categoryId));
-        model.addAttribute("booksCount", productService.count());
-        model.addAttribute("categories", categoryService.findAll());
-        return "home";
-    }
-
-    @GetMapping("/about")
-    public String about(){
-        return "about";
-    }
-
+    //write getAllProducts method to get list of products from ProductService class
     private List<Product> getAllProducts(){
         return productService.findAllByOrderByIdAsc();
     }
 
+    //write productsCount method to get number of products from ProductService class
     private long productsCount(){
         return productService.count();
     }
